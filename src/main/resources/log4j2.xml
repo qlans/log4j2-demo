@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!-- Don't forget to set system property
+-DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+     to make all loggers asynchronous. -->
+ 
+<Configuration status="WARN">
+  <Appenders>
+    <RollingFile name="file" fileName="sync.log"
+                filePattern="sync.log.%d{yyyyMMdd-HH}-%i.gz">
+      <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+      <!-- <PatternLayout pattern="[%-5p %d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%X{SessionId}] %l [%m]%n"/> -->
+      <PatternLayout pattern="[%-5p %d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%X{SessionId}] %l [%m]%n %ex{10}"/>
+      <Policies>
+          <SizeBasedTriggeringPolicy size="500MB"/>
+      </Policies>
+  </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="file"/>
+    </Root>
+  </Loggers>
+</Configuration>
