@@ -35,3 +35,4 @@ build/
 mvnw
 mvnw.cmd
 sync.log
+*.DS_Store
